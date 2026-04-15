@@ -1,15 +1,25 @@
-# Task 3: Custom Exception - Age Validator
+# Task 3: Inheritance
 
-def check_age(age):
-    if age < 1 or age > 120:
-        raise ValueError("Age must be between 1 and 120")
-    return True
+class Product:
+    def __init__(self, name, price, category):
+        self.name = name
+        self.price = price
+        self.category = category
+
+    def get_info(self):
+        print(self.name, self.price, self.category)
 
 
-try:
-    age = int(input("Enter age: "))
-    check_age(age)
-    print("Valid age")
+class ElectronicProduct(Product):
+    def __init__(self, name, price, category, warranty_years):
+        super().__init__(name, price, category)
+        self.warranty_years = warranty_years
 
-except ValueError as e:
-    print("Error:", e)
+    # Override method
+    def get_info(self):
+        print(self.name, self.price, self.category, "Warranty:", self.warranty_years, "years")
+
+
+# Test
+e = ElectronicProduct("Laptop", 1000, "Electronics", 2)
+e.get_info()

@@ -1,24 +1,23 @@
-# Task 5: Mini Program - Safe Shopping Cart
+# Task 5: Abstraction
 
-cart = []
+class Payment:
+    def process_payment(self, amount):
+        pass  # abstract-like method
 
-while True:
-    value = input("Enter price (or q to quit): ")
 
-    if value == 'q':
-        break
+class CreditCardPayment(Payment):
+    def process_payment(self, amount):
+        print("Paid", amount, "using Credit Card")
 
-    try:
-        price = float(value)
 
-        if price < 0:
-            raise ValueError("Price cannot be negative")
+class UPIPayment(Payment):
+    def process_payment(self, amount):
+        print("Paid", amount, "using UPI")
 
-        cart.append(price)
 
-    except ValueError as e:
-        print("Error:", e)
+# Test
+p1 = CreditCardPayment()
+p2 = UPIPayment()
 
-# Final output
-print("Total items:", len(cart))
-print("Total bill:", sum(cart))
+p1.process_payment(1000)
+p2.process_payment(500)

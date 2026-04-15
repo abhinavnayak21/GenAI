@@ -1,21 +1,30 @@
-# Task 4: File Reader with Exception Handling
+# Task 4: Polymorphism
 
-filename = input("Enter filename: ")
+class Product:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
 
-try:
-    with open(filename, "r") as f:
-        lines = f.readlines()
+    def get_info(self):
+        print(self.name, self.price)
 
-except FileNotFoundError:
-    print("File not found.")
 
-except PermissionError:
-    print("Permission denied.")
+class Laptop(Product):
+    def get_info(self):
+        print("Laptop:", self.name, "| Price:", self.price)
 
-else:
-    print("\nFirst 3 lines:")
-    for line in lines[:3]:
-        print(line.strip())
 
-finally:
-    print("File operation attempted.")
+class Mobile(Product):
+    def get_info(self):
+        print("Mobile:", self.name, "| Price:", self.price)
+
+
+# List of objects
+items = [
+    Laptop("Dell", 800),
+    Mobile("iPhone", 1200)
+]
+
+# Polymorphism
+for item in items:
+    item.get_info()
