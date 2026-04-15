@@ -1,0 +1,6 @@
+ipykernel 
+    -> pip install ipykernel
+    -> 
+
+numpy
+panda
